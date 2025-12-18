@@ -1,0 +1,355 @@
+/* ============================================================================
+   🎨 NEXUS DAG VISUALIZER STYLES
+   ============================================================================ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  background: linear-gradient(135deg, #0f0f1e 0%, #1a0033 100%);
+  color: #00ff41;
+  overflow: hidden;
+}
+
+/* ============================================================================
+   📺 Main Container
+   ============================================================================ */
+
+.dag-visualizer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background: radial-gradient(ellipse at center, #1a0033 0%, #0f0f1e 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.dag-visualizer canvas {
+  flex: 1;
+  background: linear-gradient(
+    135deg,
+    rgba(15, 15, 30, 0.95) 0%,
+    rgba(26, 0, 51, 0.95) 100%
+  );
+}
+
+/* ============================================================================
+   🎛️ Control Panel
+   ============================================================================ */
+
+.control-panel {
+  width: 280px;
+  background: rgba(10, 10, 20, 0.9);
+  border-left: 2px solid #00ff41;
+  padding: 20px;
+  overflow-y: auto;
+  box-shadow: -5px 0 20px rgba(0, 255, 65, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.panel-header {
+  text-align: center;
+  border-bottom: 1px dashed #00d9ff;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.panel-header h2 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #00d9ff;
+  text-shadow: 0 0 10px #00d9ff;
+}
+
+/* ============================================================================
+   📊 Stats Display
+   ============================================================================ */
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.stat {
+  background: rgba(0, 255, 65, 0.05);
+  border: 1px solid rgba(0, 255, 65, 0.2);
+  border-radius: 4px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.stat-value {
+  font-size: 14px;
+  font-weight: bold;
+  color: #00ff41;
+  text-shadow: 0 0 5px currentColor, 0 0 10px rgba(0, 255, 65, 0.3);
+}
+
+/* ============================================================================
+   📈 Progress Bar
+   ============================================================================ */
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(0, 255, 65, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 255, 65, 0.3);
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #00ff41 0%, #00d9ff 100%);
+  transition: width 0.3s ease;
+  box-shadow: 0 0 10px #00ff41;
+}
+
+/* ============================================================================
+   🎨 Legend
+   ============================================================================ */
+
+.legend {
+  margin-top: 10px;
+  border-top: 1px dashed #00ff41;
+  padding-top: 10px;
+}
+
+.legend h3 {
+  font-size: 12px;
+  color: #00ff41;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.legend-items {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #999;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  box-shadow: 0 0 5px currentColor;
+}
+
+/* ============================================================================
+   🔘 Button Styles
+   ============================================================================ */
+
+.execute-button {
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(135deg, #00ff41 0%, #00d9ff 100%);
+  border: none;
+  border-radius: 4px;
+  color: #0f0f1e;
+  font-weight: bold;
+  font-size: 12px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+  margin-top: 10px;
+}
+
+.execute-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(0, 255, 65, 0.5);
+}
+
+.execute-button:active {
+  transform: translateY(0);
+}
+
+/* ============================================================================
+   💬 Tooltips
+   ============================================================================ */
+
+.node-emoji {
+  font-size: 24px;
+  filter: drop-shadow(0 0 8px rgba(0, 255, 65, 0.5));
+}
+
+.tooltip {
+  background: rgba(10, 10, 20, 0.95);
+  border: 2px solid #00ff41;
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: #00ff41;
+  font-size: 11px;
+  white-space: nowrap;
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+  text-shadow: 0 0 5px #00ff41;
+}
+
+.tooltip-name {
+  font-weight: bold;
+  color: #00d9ff;
+  margin-bottom: 2px;
+}
+
+.tooltip-type {
+  color: #ffb300;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tooltip-status {
+  color: #00ff41;
+  margin-top: 2px;
+}
+
+/* ============================================================================
+   ⏳ Loading State
+   ============================================================================ */
+
+.visualizer-loading {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0f0f1e 0%, #1a0033 100%);
+  color: #00ff41;
+  font-size: 18px;
+  font-family: 'IBM Plex Mono', monospace;
+  text-shadow: 0 0 10px #00ff41;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* ============================================================================
+   🎬 Animations
+   ============================================================================ */
+
+@keyframes glow {
+  0%,
+  100% {
+    text-shadow: 0 0 5px #00ff41, 0 0 10px #00d9ff;
+  }
+  50% {
+    text-shadow: 0 0 20px #00ff41, 0 0 30px #00d9ff;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* ============================================================================
+   📱 Responsive Adjustments
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .control-panel {
+    width: 200px;
+    padding: 15px;
+  }
+
+  .panel-header h2 {
+    font-size: 14px;
+  }
+
+  .stat-value {
+    font-size: 12px;
+  }
+
+  .legend h3 {
+    font-size: 11px;
+  }
+
+  .legend-item {
+    font-size: 10px;
+  }
+
+  .execute-button {
+    font-size: 11px;
+    padding: 8px;
+  }
+}
+
+/* ============================================================================
+   🌙 Dark Mode Enhancements
+   ============================================================================ */
+
+@media (prefers-color-scheme: dark) {
+  .control-panel {
+    background: rgba(10, 10, 20, 0.95);
+  }
+
+  .stat {
+    background: rgba(0, 255, 65, 0.03);
+    border-color: rgba(0, 255, 65, 0.15);
+  }
+
+  .tooltip {
+    background: rgba(10, 10, 20, 0.98);
+  }
+}
+
+/* ============================================================================
+   🎯 Scrollbar Styling
+   ============================================================================ */
+
+.control-panel::-webkit-scrollbar {
+  width: 8px;
+}
+
+.control-panel::-webkit-scrollbar-track {
+  background: rgba(0, 255, 65, 0.05);
+}
+
+.control-panel::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 65, 0.3);
+  border-radius: 4px;
+}
+
+.control-panel::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 65, 0.5);
+}

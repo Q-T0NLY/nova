@@ -172,14 +172,15 @@ typeset -gA UNIFIED_FEATURE_REGISTRY=(
     "github_health_monitoring"          "Health Monitoring (4 endpoints) | Status: Active"
     "github_discovery_search"           "Discovery Search (7 endpoints) | Status: Active"
     "github_integration_endpoints"      "Integration (24+ endpoints) | Status: Active"
-    "github_hyper_registry"             "Hyper Registry Service (156+ items) | Status: Active"
+    "github_hyper_registry"             "Universal Hyper Registry (63 classifications, 6 sub-registries) | Status: Active"
+    "github_orchestrator_subregistry"   "Orchestrator Sub-Registry (Plugin, Service, ML, Data, Infra, Security) | Status: Active"
     "github_code_injector"              "Code Injector (6 middleware, 4 hooks) | Status: Active"
     "github_service_mesh"               "Service Mesh (6 services, 11 instances) | Status: Active"
     "github_ultra_dashboard"            "Ultra Professional Dashboard | Status: Active"
     "github_backend_config"             "Backend Configuration Manager | Status: Active"
     "github_macos_spoofer"              "macOS Version Spoofer (6 profiles) | Status: Active"
-    "github_unified_bridge"             "Unified Bridge (3 adapters) | Status: Active"
-    "github_enhanced_orchestrator"      "Enhanced Orchestrator (FastAPI) | Status: Active"
+    "github_unified_bridge"             "Unified Bridge (Python-TypeScript integration) | Status: Active"
+    "github_enhanced_orchestrator"      "Enhanced Orchestrator (Universal Registry + FastAPI) | Status: Active"
     
     # NOVASYSTEM FEATURES (67 features)
     "nova_core_14"                      "Core Nexus-Nova (14 features) | Status: Active"
@@ -238,6 +239,11 @@ typeset -ga PYTHON_REQUIREMENTS=(
     "requests==2.31.0"
     "langchain==0.1.7"
     "python-dotenv==1.0.0"
+)
+
+# Universal Hyper Registry requirements
+typeset -ga UNIVERSAL_REGISTRY_REQUIREMENTS=(
+    # Core registry system (no additional deps needed - uses stdlib)
 )
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -416,6 +422,82 @@ unified_system_check() {
 }
 
 # ═══════════════════════════════════════════════════════════════════════════════
+# SECTION 6.5: UNIVERSAL HYPER REGISTRY INITIALIZATION
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Initialize Universal Hyper Registry System
+unified_init_hyper_registry() {
+    print "\n🌍 UNIVERSAL HYPER REGISTRY INITIALIZATION"
+    print "═══════════════════════════════════════════════════════════════════════════════"
+    
+    # Detect registry path
+    local registry_path="${UNIFIED_HOME:-/workspaces/terminal-zsh}/universal-registry"
+    local hyper_registry_path="${UNIFIED_HOME:-/workspaces/terminal-zsh}/HYPER_REGISTRY"
+    
+    if [[ ! -d "$registry_path" ]]; then
+        print "⚠️  Universal Registry not found at: $registry_path"
+        return 1
+    fi
+    
+    print "📦 Registry Path: $registry_path"
+    print "🔗 HYPER_REGISTRY Path: $hyper_registry_path"
+    
+    # Check Python availability
+    if ! command -v python3 &> /dev/null; then
+        print "❌ Python 3 is required but not found"
+        return 1
+    fi
+    
+    local python_version=$(python3 --version 2>&1 | awk '{print $2}')
+    print "🐍 Python Version: $python_version"
+    
+    # Run initialization script
+    print "🚀 Initializing unified registry system..."
+    
+    if [[ -f "$registry_path/initialize_unified_registry.py" ]]; then
+        local export_file="$UNIFIED_DATA/unified_registry_export.json"
+        
+        python3 "$registry_path/initialize_unified_registry.py" \
+            --hyper-registry-path="$hyper_registry_path" \
+            --export="$export_file" 2>&1 | while IFS= read -r line; do
+            print "  $line"
+        done
+        
+        local status=$?
+        if [[ $status -eq 0 ]]; then
+            print "✅ Universal Hyper Registry initialized successfully"
+            
+            if [[ -f "$export_file" ]]; then
+                print "💾 Registry data exported to: $export_file"
+                
+                # Display summary
+                local total_entries=$(jq -r '.system_status.total_entries // 0' "$UNIFIED_DATA/unified_registry_export_orchestrator.json" 2>/dev/null || echo "0")
+                print "📊 Total Sub-Registry Entries: $total_entries"
+                
+                # List sub-registry status
+                print "\n📋 Sub-Registry Status:"
+                for reg_type in plugin service ml_model data infra security; do
+                    local count=$(jq -r ".system_status.registries.$reg_type.entry_count // 0" "$UNIFIED_DATA/unified_registry_export_orchestrator.json" 2>/dev/null || echo "0")
+                    local healthy=$(jq -r ".system_status.registries.$reg_type.healthy // false" "$UNIFIED_DATA/unified_registry_export_orchestrator.json" 2>/dev/null || echo "false")
+                    local status_icon="❌"
+                    [[ "$healthy" == "true" ]] && status_icon="✅"
+                    printf "  %s %-12s: %3d entries\n" "$status_icon" "$reg_type" "$count"
+                done
+            fi
+        else
+            print "❌ Universal Hyper Registry initialization failed (exit code: $status)"
+            return 1
+        fi
+    else
+        print "⚠️  Initialization script not found: $registry_path/initialize_unified_registry.py"
+        return 1
+    fi
+    
+    print "═══════════════════════════════════════════════════════════════════════════════\n"
+    return 0
+}
+
+# ═══════════════════════════════════════════════════════════════════════════════
 # SECTION 7: MASTER COMMAND BUS
 # ═══════════════════════════════════════════════════════════════════════════════
 
@@ -426,6 +508,9 @@ unified_command() {
     case "$cmd" in
         init)
             unified_init_system
+            ;;
+        registry|hyper-registry)
+            unified_init_hyper_registry
             ;;
         features)
             unified_list_all_features
@@ -449,15 +534,18 @@ unified_show_help() {
     print "═══════════════════════════════════════════════════════════════════════════════"
     print "\nUsage: unified_command <command>"
     print "\nAvailable Commands:"
-    print "  init       - Initialize the unified system"
-    print "  features   - Display all 200+ features"
-    print "  check      - Run comprehensive system check"
-    print "  status     - Display system status (alias: check)"
-    print "  help       - Show this help message"
+    print "  init             - Initialize the unified system"
+    print "  registry         - Initialize Universal Hyper Registry"
+    print "  hyper-registry   - Initialize Universal Hyper Registry (alias)"
+    print "  features         - Display all 200+ features"
+    print "  check            - Run comprehensive system check"
+    print "  status           - Display system status (alias: check)"
+    print "  help             - Show this help message"
     print "\nQuick Start:"
-    print "  1. unified_command init       # Initialize"
-    print "  2. unified_command features   # View all features"
-    print "  3. unified_command check      # System check"
+    print "  1. unified_command init         # Initialize system"
+    print "  2. unified_command registry     # Initialize Universal Hyper Registry"
+    print "  3. unified_command features     # View all features"
+    print "  4. unified_command check        # System check"
     print "\n═══════════════════════════════════════════════════════════════════════════════\n"
 }
 
@@ -498,13 +586,13 @@ fi
 # ║  Quality Score:  100/100 ⭐⭐⭐⭐⭐                                              ║
 # ║                                                                                ║
 # ╚════════════════════════════════════════════════════════════════════════════════╝
-fi
 
 # Export all public functions
 export -f unified_init_system
 export -f unified_list_all_features
 export -f unified_validate_syntax
 export -f unified_system_check
+export -f unified_init_hyper_registry
 export -f unified_command
 export -f unified_show_help
 

@@ -1,55 +1,67 @@
 """
-🌌 HYPER REGISTRY CORE MODULES
-Swarm intelligence, hot-swap, bi-directional streaming, and real-time propagation
+🌍 UNIVERSAL REGISTRY - Core Module Exports
+Unified management of all system configurations, components, and data
+Now with Orchestrator Sub-Registry integration
 """
 
-from .swarm_singularity_registry import (
-    SwarmSingularityRegistry,
-    SwarmRegistryCategory,
-    SwarmRegistryEntry,
-    BiDirectionalStream,
-    PropagationChain,
-    HotSwapStatus,
-    StreamingDirection,
-    PropagationMode,
-    HotSwapManager,
-    BiDirectionalStreamingEngine,
-    PropagationEngine,
-    SwarmCoordinator,
-    LiveSynchronizationEngine,
-    AdvancedSwarmVisualization,
+# Core Universal Registry
+from .universal_registry import (
+    UniversalRegistry,
+    UniversalRegistryEntry,
+    RegistryClassification,
+    ZshPythonSyncManager,
+    RegistryIntegrationBridge,
+    HealthMonitor,
+    DependencyMapper,
+    LifecycleManager,
 )
 
-from .enhanced_database import (
-    EnhancedDatabaseManager,
-    RealTimePropagationSystem,
-    EnhancedPropagationEngine,
-    StreamingOrchestrator,
-    ConflictDetector,
-    WebSocketManager,
-    RealTimeVisualizationEngine,
+# Orchestrator Sub-Registry System
+from .orchestrator_subregistry import (
+    OrchestratorSubRegistry,
+    SubRegistryType,
+    SubRegistryEntry,
+    SubRegistryMetadata,
+    SubRegistryQuery,
+    SubRegistryResult,
+    ISubRegistry,
+    PluginSubRegistry,
+    ServiceSubRegistry,
+    MLModelSubRegistry,
+    DataSubRegistry,
+    InfraSubRegistry,
+    SecuritySubRegistry,
+    initialize_orchestrator_system,
 )
+
+# Configuration
+from .config import UniversalRegistryConfig
 
 __all__ = [
-    'SwarmSingularityRegistry',
-    'SwarmRegistryCategory',
-    'SwarmRegistryEntry',
-    'BiDirectionalStream',
-    'PropagationChain',
-    'HotSwapStatus',
-    'StreamingDirection',
-    'PropagationMode',
-    'HotSwapManager',
-    'BiDirectionalStreamingEngine',
-    'PropagationEngine',
-    'SwarmCoordinator',
-    'LiveSynchronizationEngine',
-    'AdvancedSwarmVisualization',
-    'EnhancedDatabaseManager',
-    'RealTimePropagationSystem',
-    'EnhancedPropagationEngine',
-    'StreamingOrchestrator',
-    'ConflictDetector',
-    'WebSocketManager',
-    'RealTimeVisualizationEngine',
+    # Universal Registry
+    'UniversalRegistry',
+    'UniversalRegistryEntry',
+    'RegistryClassification',
+    'ZshPythonSyncManager',
+    'RegistryIntegrationBridge',
+    'HealthMonitor',
+    'DependencyMapper',
+    'LifecycleManager',
+    # Orchestrator Sub-Registry
+    'OrchestratorSubRegistry',
+    'SubRegistryType',
+    'SubRegistryEntry',
+    'SubRegistryMetadata',
+    'SubRegistryQuery',
+    'SubRegistryResult',
+    'ISubRegistry',
+    'PluginSubRegistry',
+    'ServiceSubRegistry',
+    'MLModelSubRegistry',
+    'DataSubRegistry',
+    'InfraSubRegistry',
+    'SecuritySubRegistry',
+    'initialize_orchestrator_system',
+    # Config
+    'UniversalRegistryConfig',
 ]

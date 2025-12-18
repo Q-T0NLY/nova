@@ -141,13 +141,24 @@ class UniversalRegistry:
     """
     🌍 UNIVERSAL REGISTRY - Complete ZSH + Python Integration
     Unified management of all system configurations, components, and data
+    Now integrated with Orchestrator Sub-Registry system
     """
     
     def __init__(self):
         self.entries: Dict[str, UniversalRegistryEntry] = {}
         self.classifications: Dict[RegistryClassification, List[str]] = {}
         self.sync_manager = ZshPythonSyncManager()
+        self.orchestrator_subregistry = None  # Lazy initialization
         
+    async def enable_orchestrator_subregistry(self, hyper_registry_path: str = None):
+        """Enable Orchestrator Sub-Registry integration"""
+        try:
+            from .orchestrator_subregistry import initialize_orchestrator_system
+            self.orchestrator_subregistry = await initialize_orchestrator_system(hyper_registry_path)
+            logger.info("🎯 Orchestrator Sub-Registry integration enabled")
+        except Exception as e:
+            logger.error(f"❌ Failed to enable Orchestrator Sub-Registry: {e}")
+    
     async def register_entry(self, classification: RegistryClassification, 
                            name: str, data: Dict, metadata: Dict = None) -> str:
         """Register entry in universal registry"""
@@ -227,6 +238,46 @@ class UniversalRegistry:
         except Exception as e:
             logger.error(f"❌ Export failed: {e}")
             return False
+    
+    async def get_orchestrator_status(self) -> Optional[Dict[str, Any]]:
+        """Get status of Orchestrator Sub-Registry system"""
+        if not self.orchestrator_subregistry:
+            return None
+        
+        return await self.orchestrator_subregistry.get_system_status()
+    
+    async def register_to_subregistry(self, subregistry_type: str, entry_data: Dict) -> Optional[str]:
+        """Register an entry to a specific sub-registry"""
+        if not self.orchestrator_subregistry:
+            logger.warning("Orchestrator Sub-Registry not enabled")
+            return None
+        
+        try:
+            from .orchestrator_subregistry import SubRegistryType, SubRegistryEntry, SubRegistryMetadata
+            
+            # Convert string type to enum
+            reg_type = SubRegistryType(subregistry_type)
+            
+            # Create sub-registry entry
+            sub_entry = SubRegistryEntry(
+                id=entry_data.get('id', str(__import__('uuid').uuid4())),
+                name=entry_data['name'],
+                metadata=SubRegistryMetadata(
+                    type=reg_type,
+                    version=entry_data.get('version', '1.0.0'),
+                    tags=entry_data.get('tags', []),
+                    annotations=entry_data.get('annotations', {})
+                ),
+                data=entry_data.get('data', {}),
+                namespace=entry_data.get('namespace', 'global'),
+                description=entry_data.get('description', '')
+            )
+            
+            # Register to sub-registry
+            return await self.orchestrator_subregistry.register(sub_entry)
+        except Exception as e:
+            logger.error(f"❌ Failed to register to sub-registry: {e}")
+            return None
 
 
 class ZshPythonSyncManager:

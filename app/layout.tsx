@@ -1,22 +1,14 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { GeistSans } from "geist/font/sans"
-import { GeistMono } from "geist/font/mono"
-import { Orbitron } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
+import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
-import { Suspense } from "react"
-import { ThemeProvider } from "@/lib/contexts/theme-context"
 
-const orbitron = Orbitron({
-  subsets: ["latin"],
-  variable: "--font-orbitron",
-  display: "swap",
-})
+const _geist = Geist({ subsets: ["latin"] })
+const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Nexus Quantum - AI Agent Platform",
-  description: "Autonomous Agent Generation & Orchestration Platform",
+  title: "NEXUS AI Orchestrator",
+  description: "Next-Generation Multimodal AI Orchestration Platform",
   generator: "v0.app",
 }
 
@@ -25,14 +17,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  console.log("[v0] Root layout rendering")
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${orbitron.variable}`}>
-        <ThemeProvider>
-          <Suspense fallback={null}>{children}</Suspense>
-        </ThemeProvider>
-        <Analytics />
-      </body>
+    <html lang="en">
+      <body className={`font-sans antialiased`}>{children}</body>
     </html>
   )
 }

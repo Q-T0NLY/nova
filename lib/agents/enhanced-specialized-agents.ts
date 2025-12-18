@@ -285,3 +285,6 @@ export class EnhancedGenerativeAgent extends EnhancedSpecializedAgent {
     }
   }
 }
+
+// Export specialized agents
+export { EnhancedSpecializedAgent }

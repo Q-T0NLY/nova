@@ -33,40 +33,34 @@ export class ThemeApplier {
   }
 
   private generateCSS(theme: DashboardTheme): string {
-    const colors = theme.colors || {}
-    const typography = theme.typography || { fontFamily: "sans-serif", fontSize: {}, fontWeight: {} }
-    const spacing = theme.spacing || {}
-    const borderRadius = theme.borderRadius || {}
-    const shadows = theme.shadows || {}
-
     return `
 :root {
   /* Colors */
-  ${Object.entries(colors)
+  ${Object.entries(theme.colors)
     .map(([key, value]) => `--color-${key}: ${value};`)
     .join("\n  ")}
 
   /* Typography */
-  --font-family: ${typography.fontFamily};
-  ${Object.entries(typography.fontSize || {})
+  --font-family: ${theme.typography.fontFamily};
+  ${Object.entries(theme.typography.fontSize)
     .map(([key, value]) => `--text-${key}: ${value};`)
     .join("\n  ")}
-  ${Object.entries(typography.fontWeight || {})
+  ${Object.entries(theme.typography.fontWeight)
     .map(([key, value]) => `--font-${key}: ${value};`)
     .join("\n  ")}
 
   /* Spacing */
-  ${Object.entries(spacing)
+  ${Object.entries(theme.spacing)
     .map(([key, value]) => `--spacing-${key}: ${value};`)
     .join("\n  ")}
 
   /* Border Radius */
-  ${Object.entries(borderRadius)
+  ${Object.entries(theme.borderRadius)
     .map(([key, value]) => `--radius-${key}: ${value};`)
     .join("\n  ")}
 
   /* Shadows */
-  ${Object.entries(shadows)
+  ${Object.entries(theme.shadows)
     .map(([key, value]) => `--shadow-${key}: ${value};`)
     .join("\n  ")}
 }
@@ -115,7 +109,7 @@ export class ThemeApplier {
 .dashboard-input:focus {
   outline: none;
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px ${this.hexToRgba(colors.accent || "#3b82f6", 0.1)};
+  box-shadow: 0 0 0 3px ${this.hexToRgba(theme.colors.accent, 0.1)};
 }
 
 /* Quantum Glow Effects */
@@ -131,7 +125,7 @@ export class ThemeApplier {
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, ${this.hexToRgba(colors.accent || "#3b82f6", 0.5)}, transparent);
+  background: linear-gradient(90deg, transparent, ${this.hexToRgba(theme.colors.accent, 0.5)}, transparent);
   animation: quantum-pulse 2s ease-in-out infinite;
 }
 
@@ -141,7 +135,7 @@ export class ThemeApplier {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, ${this.hexToRgba(colors.accent || "#3b82f6", 0.3)}, transparent);
+  background: linear-gradient(135deg, ${this.hexToRgba(theme.colors.accent, 0.3)}, transparent);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -199,47 +193,33 @@ export class ThemeApplier {
     const root = document.documentElement
 
     // Apply colors
-    if (theme.colors) {
-      Object.entries(theme.colors).forEach(([key, value]) => {
-        root.style.setProperty(`--color-${key}`, value)
-      })
-    }
+    Object.entries(theme.colors).forEach(([key, value]) => {
+      root.style.setProperty(`--color-${key}`, value)
+    })
 
     // Apply typography
-    if (theme.typography) {
-      root.style.setProperty("--font-family", theme.typography.fontFamily)
-      if (theme.typography.fontSize) {
-        Object.entries(theme.typography.fontSize).forEach(([key, value]) => {
-          root.style.setProperty(`--text-${key}`, value)
-        })
-      }
-      if (theme.typography.fontWeight) {
-        Object.entries(theme.typography.fontWeight).forEach(([key, value]) => {
-          root.style.setProperty(`--font-${key}`, value)
-        })
-      }
-    }
+    root.style.setProperty("--font-family", theme.typography.fontFamily)
+    Object.entries(theme.typography.fontSize).forEach(([key, value]) => {
+      root.style.setProperty(`--text-${key}`, value)
+    })
+    Object.entries(theme.typography.fontWeight).forEach(([key, value]) => {
+      root.style.setProperty(`--font-${key}`, value)
+    })
 
     // Apply spacing
-    if (theme.spacing) {
-      Object.entries(theme.spacing).forEach(([key, value]) => {
-        root.style.setProperty(`--spacing-${key}`, value)
-      })
-    }
+    Object.entries(theme.spacing).forEach(([key, value]) => {
+      root.style.setProperty(`--spacing-${key}`, value)
+    })
 
     // Apply border radius
-    if (theme.borderRadius) {
-      Object.entries(theme.borderRadius).forEach(([key, value]) => {
-        root.style.setProperty(`--radius-${key}`, value)
-      })
-    }
+    Object.entries(theme.borderRadius).forEach(([key, value]) => {
+      root.style.setProperty(`--radius-${key}`, value)
+    })
 
     // Apply shadows
-    if (theme.shadows) {
-      Object.entries(theme.shadows).forEach(([key, value]) => {
-        root.style.setProperty(`--shadow-${key}`, value)
-      })
-    }
+    Object.entries(theme.shadows).forEach(([key, value]) => {
+      root.style.setProperty(`--shadow-${key}`, value)
+    })
   }
 
   private hexToRgba(hex: string, alpha: number): string {

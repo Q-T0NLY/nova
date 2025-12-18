@@ -958,3 +958,16 @@ export interface Optimization {
   shouldApply: boolean
   changes: any[]
 }
+
+// Export everything
+export {
+  EnhancedAgent,
+  EnhancedMessageBusClient,
+  SecurityManager,
+  PolicyEnforcer,
+  LearningEngine,
+  MetricsCollector,
+  CircuitBreaker,
+  RateLimiter,
+  CapabilityMetrics,
+}

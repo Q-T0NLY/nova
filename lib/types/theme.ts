@@ -53,27 +53,3 @@ export interface DashboardTheme {
     lg: string
   }
 }
-
-export interface FigmaThemeImport {
-  fileKey: string
-  nodeId?: string
-  accessToken?: string
-}
-
-export interface ThemeConversionInput {
-  format: "css" | "tailwind" | "json" | "palette" | "auto"
-  data: string
-}
-
-export interface ThemeConversionResult {
-  theme: DashboardTheme
-  confidence: number
-  warnings?: string[]
-}
-
-export interface ThemeScalingOptions {
-  preserveRatios: boolean
-  generateMissingValues: boolean
-  harmonizeColors: boolean
-  optimizeContrast: boolean
-}

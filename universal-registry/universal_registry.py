@@ -153,7 +153,13 @@ class UniversalRegistry:
     async def enable_orchestrator_subregistry(self, hyper_registry_path: str = None):
         """Enable Orchestrator Sub-Registry integration"""
         try:
-            from .orchestrator_subregistry import initialize_orchestrator_system
+            # Try relative import first
+            try:
+                from .orchestrator_subregistry import initialize_orchestrator_system
+            except ImportError:
+                # Fall back to absolute import
+                from orchestrator_subregistry import initialize_orchestrator_system
+            
             self.orchestrator_subregistry = await initialize_orchestrator_system(hyper_registry_path)
             logger.info("🎯 Orchestrator Sub-Registry integration enabled")
         except Exception as e:
@@ -253,7 +259,12 @@ class UniversalRegistry:
             return None
         
         try:
-            from .orchestrator_subregistry import SubRegistryType, SubRegistryEntry, SubRegistryMetadata
+            # Try relative import first
+            try:
+                from .orchestrator_subregistry import SubRegistryType, SubRegistryEntry, SubRegistryMetadata
+            except ImportError:
+                # Fall back to absolute import
+                from orchestrator_subregistry import SubRegistryType, SubRegistryEntry, SubRegistryMetadata
             
             # Convert string type to enum
             reg_type = SubRegistryType(subregistry_type)

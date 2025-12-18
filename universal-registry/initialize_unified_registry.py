@@ -34,8 +34,8 @@ async def initialize_unified_registry(hyper_registry_path: str = None):
         from universal_registry import (
             UniversalRegistry,
             RegistryClassification,
-            initialize_orchestrator_system
         )
+        from orchestrator_subregistry import initialize_orchestrator_system
         
         # 1. Initialize Universal Registry
         logger.info("📦 Step 1: Initializing Universal Registry...")
@@ -45,9 +45,10 @@ async def initialize_unified_registry(hyper_registry_path: str = None):
         logger.info("🎯 Step 2: Initializing Orchestrator Sub-Registry...")
         orchestrator = await initialize_orchestrator_system(hyper_registry_path)
         
-        # 3. Integrate Orchestrator with Universal Registry
+        # 3. Integrate Orchestrator with Universal Registry (use existing orchestrator)
         logger.info("🔗 Step 3: Integrating systems...")
-        await universal_registry.enable_orchestrator_subregistry(hyper_registry_path)
+        universal_registry.orchestrator_subregistry = orchestrator
+        logger.info("🎯 Orchestrator Sub-Registry integration enabled")
         
         # 4. Register sample entries to demonstrate functionality
         logger.info("📝 Step 4: Registering sample entries...")

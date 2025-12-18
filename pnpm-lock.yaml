@@ -112,7 +112,7 @@ importers:
         version: 1.5.0(next@15.2.4(@opentelemetry/api@1.9.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)
       ai:
         specifier: latest
-        version: 5.0.76(zod@3.25.76)
+        version: 5.0.68(zod@3.25.76)
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.5.0)
@@ -181,7 +181,7 @@ importers:
         version: 11.11.4(@types/react@19.0.0)(immer@10.1.3)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       recharts:
         specifier: latest
-        version: 3.3.0(@types/react@19.0.0)(react-dom@19.0.0(react@19.0.0))(react-is@19.2.0)(react@19.0.0)(redux@5.0.1)
+        version: 3.2.1(@types/react@19.0.0)(react-dom@19.0.0(react@19.0.0))(react-is@19.2.0)(react@19.0.0)(redux@5.0.1)
       sonner:
         specifier: ^1.7.4
         version: 1.7.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -234,8 +234,8 @@ importers:
 
 packages:
 
-  '@ai-sdk/gateway@2.0.0':
-    resolution: {integrity: sha512-Gj0PuawK7NkZuyYgO/h5kDK/l6hFOjhLdTq3/Lli1FTl47iGmwhH1IZQpAL3Z09BeFYWakcwUmn02ovIm2wy9g==}
+  '@ai-sdk/gateway@1.0.39':
+    resolution: {integrity: sha512-ijYCKG2sbn2RBVfIgaXNXvzHAf2HpFXxQODtjMI+T7Z4CLryflytchsZZ9qrGtsjiQVopKOV6m6kj4lq5fnbsg==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -283,8 +283,8 @@ packages:
     peerDependencies:
       react: '>=16.8.0'
 
-  '@emnapi/runtime@1.6.0':
-    resolution: {integrity: sha512-obtUmAHTMjll499P+D9A3axeJFlhdjOWdKUNs/U6QIGT7V5RjcUW1xToAzjvmgTSQhDbYn/NwfTRoJcQ2rNBxA==}
+  '@emnapi/runtime@1.5.0':
+    resolution: {integrity: sha512-97/BJ3iXHww3djw6hYIfErCZFee7qCtrneuLa20UXFCOTCfBM2cvQHjWJ2EG0s0MtdNwInarqCTz35i4wWXHsQ==}
 
   '@emotion/is-prop-valid@1.4.0':
     resolution: {integrity: sha512-QgD4fyscGcbbKwJmqNvUMSE02OsHUa+lAWKdEUIJKgqe5IwRSKd7+KhibEWdaKwgjLj0DRSHA9biAIqGBk05lw==}
@@ -434,8 +434,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@monaco-editor/loader@1.6.1':
-    resolution: {integrity: sha512-w3tEnj9HYEC73wtjdpR089AqkUPskFRcdkxsiSFt3SoUc3OHpmu+leP94CXBm4mHfefmhsdfI0ZQu6qJ0wgtPg==}
+  '@monaco-editor/loader@1.5.0':
+    resolution: {integrity: sha512-hKoGSM+7aAc7eRTRjpqAZucPmoNOC4UUbknb/VNoTkEIkCPhqV8LfbsgM1webRM7S/z21eHEx9Fkwx8Z/C/+Xw==}
 
   '@monaco-editor/react@4.7.0':
     resolution: {integrity: sha512-cyzXQCtO47ydzxpQtCGSQGOC8Gk3ZUeBXFAxD+CWXYFo5OqZyZUonFl0DwUlTyAfRHntBfw2p3w4s9R6oe1eCA==}
@@ -1433,8 +1433,8 @@ packages:
       react: '>=17'
       react-dom: '>=17'
 
-  '@reduxjs/toolkit@2.9.1':
-    resolution: {integrity: sha512-sETJ3qO72y7L7WiR5K54UFLT3jRzAtqeBPVO15xC3bGA6kDqCH8m/v7BKCPH4czydXzz/1lPEGLvew7GjOO3Qw==}
+  '@reduxjs/toolkit@2.9.0':
+    resolution: {integrity: sha512-fSfQlSRu9Z5yBkvsNhYF2rPS8cGXn/TZVrlwN1948QyZ8xMZ0JvP50S2acZNaf+o63u6aEeMjipFyksjIcWrog==}
     peerDependencies:
       react: ^16.9.0 || ^17.0.0 || ^18 || ^19
       react-redux: ^7.2.1 || ^8.1.3 || ^9.0.0
@@ -1678,12 +1678,12 @@ packages:
       vue-router:
         optional: true
 
-  '@vercel/oidc@3.0.3':
-    resolution: {integrity: sha512-yNEQvPcVrK9sIe637+I0jD6leluPxzwJKx/Haw6F4H77CdDsszUn5V3o96LPziXkSNE2B83+Z3mjqGKBK/R6Gg==}
+  '@vercel/oidc@3.0.2':
+    resolution: {integrity: sha512-JekxQ0RApo4gS4un/iMGsIL1/k4KUBe3HmnGcDvzHuFBdQdudEJgTqcsJC7y6Ul4Yw5CeykgvQbX2XeEJd0+DA==}
     engines: {node: '>= 20'}
 
-  ai@5.0.76:
-    resolution: {integrity: sha512-ZCxi1vrpyCUnDbtYrO/W8GLvyacV9689f00yshTIQ3mFFphbD7eIv40a2AOZBv3GGRA7SSRYIDnr56wcS/gyQg==}
+  ai@5.0.68:
+    resolution: {integrity: sha512-SB6r+4TkKVlSg2ozGBSfuf6Is5hrcX/bpGBzOoyHIN3b4ILGhaly0IHEvP8+3GGIHXqtkPVEUmR6V05jKdjNlg==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -1699,8 +1699,8 @@ packages:
     peerDependencies:
       postcss: ^8.1.0
 
-  baseline-browser-mapping@2.8.19:
-    resolution: {integrity: sha512-zoKGUdu6vb2jd3YOq0nnhEDQVbPcHhco3UImJrv5dSkvxTc2pl2WjOPsjZXDwPDSl5eghIMuY3R6J9NDKF3KcQ==}
+  baseline-browser-mapping@2.8.16:
+    resolution: {integrity: sha512-OMu3BGQ4E7P1ErFsIPpbJh0qvDudM/UuJeHgkAvfWe+0HFJCXh+t/l8L6fVLR55RI/UbKrVLnAXZSVwd9ysWYw==}
     hasBin: true
 
   browserslist@4.26.3:
@@ -1712,8 +1712,8 @@ packages:
     resolution: {integrity: sha512-8SFQbg/0hQ9xy3UNTB0YEnsNBbWfhf7RtnzpL7TkBiTBRfrQ9Fxcnz7VJsleJpyp6rVLvXiuORqjlHi5q+PYuA==}
     engines: {node: '>=10.16.0'}
 
-  caniuse-lite@1.0.30001751:
-    resolution: {integrity: sha512-A0QJhug0Ly64Ii3eIqHu5X51ebln3k4yTUkY1j8drqpWHVreg/VLijN48cZ1bYPiqOQuqpkIKnzr/Ul8V+p6Cw==}
+  caniuse-lite@1.0.30001749:
+    resolution: {integrity: sha512-0rw2fJOmLfnzCRbkm8EyHL8SvI2Apu5UbnQuTsJ0ClgrH8hcwFooJ1s5R0EP8o8aVrFu8++ae29Kt9/gZAZp/Q==}
 
   chownr@3.0.0:
     resolution: {integrity: sha512-+IxzY9BZOQd/XuYPRmrvEVjF/nqj5kgT4kEq7VofrDoM1MxoRjEWkrCC3EtLi59TVawxTAn+orJwFQcrqEN1+g==}
@@ -1840,8 +1840,8 @@ packages:
   dompurify@3.1.7:
     resolution: {integrity: sha512-VaTstWtsneJY8xzy7DekmYWEOZcmzIe3Qb3zPd4STve1OBTa+e+WmS1ITQec1fZYXI3HCsOZZiSMpG6oxoWMWQ==}
 
-  electron-to-chromium@1.5.237:
-    resolution: {integrity: sha512-icUt1NvfhGLar5lSWH3tHNzablaA5js3HVHacQimfP8ViEBOQv+L7DKEuHdbTZ0SKCO1ogTJTIL1Gwk9S6Qvcg==}
+  electron-to-chromium@1.5.234:
+    resolution: {integrity: sha512-RXfEp2x+VRYn8jbKfQlRImzoJU01kyDvVPBmG39eU2iuRVhuS6vQNocB8J0/8GrIMLnPzgz4eW6WiRnJkTuNWg==}
 
   embla-carousel-react@8.5.1:
     resolution: {integrity: sha512-z9Y0K84BJvhChXgqn2CFYbfEi6AwEr+FFVVKm/MqbTQ2zIzO1VQri6w67LcfpVF0AjbhwVMywDZqY4alYkjW5w==}
@@ -2056,8 +2056,8 @@ packages:
       sass:
         optional: true
 
-  node-releases@2.0.26:
-    resolution: {integrity: sha512-S2M9YimhSjBSvYnlr5/+umAnPHE++ODwt5e2Ij6FoX45HA/s4vHdkDx1eax2pAPeAOqu4s9b7ppahsyEFdVqQA==}
+  node-releases@2.0.23:
+    resolution: {integrity: sha512-cCmFDMSm26S6tQSDpBCg/NR8NENrVPhAJSf+XbxBG4rPFaaonlEoE9wHQmun+cls499TQGSb7ZyPBRlzgKfpeg==}
 
   normalize-range@0.1.2:
     resolution: {integrity: sha512-bdok/XvKII3nUpklnV6P2hxtMNrCboOjAcyBuQnWEhO665FwrSNRxU+AqpsyvO6LgGYPspN+lu5CLtw4jPRKNA==}
@@ -2158,8 +2158,8 @@ packages:
       react: '>=17'
       react-dom: '>=17'
 
-  recharts@3.3.0:
-    resolution: {integrity: sha512-Vi0qmTB0iz1+/Cz9o5B7irVyUjX2ynvEgImbgMt/3sKRREcUM07QiYjS1QpAVrkmVlXqy5gykq4nGWMz9AS4Rg==}
+  recharts@3.2.1:
+    resolution: {integrity: sha512-0JKwHRiFZdmLq/6nmilxEZl3pqb4T+aKkOkOi/ZISRZwfBhVMgInxzlYU9D4KnCH3KINScLy68m/OvMXoYGZUw==}
     engines: {node: '>=18'}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -2344,11 +2344,11 @@ packages:
 
 snapshots:
 
-  '@ai-sdk/gateway@2.0.0(zod@3.25.76)':
+  '@ai-sdk/gateway@1.0.39(zod@3.25.76)':
     dependencies:
       '@ai-sdk/provider': 2.0.0
       '@ai-sdk/provider-utils': 3.0.12(zod@3.25.76)
-      '@vercel/oidc': 3.0.3
+      '@vercel/oidc': 3.0.2
       zod: 3.25.76
 
   '@ai-sdk/provider-utils@3.0.12(zod@3.25.76)':
@@ -2396,7 +2396,7 @@ snapshots:
       react: 19.0.0
       tslib: 2.8.1
 
-  '@emnapi/runtime@1.6.0':
+  '@emnapi/runtime@1.5.0':
     dependencies:
       tslib: 2.8.1
     optional: true
@@ -2494,7 +2494,7 @@ snapshots:
 
   '@img/sharp-wasm32@0.33.5':
     dependencies:
-      '@emnapi/runtime': 1.6.0
+      '@emnapi/runtime': 1.5.0
     optional: true
 
   '@img/sharp-win32-ia32@0.33.5':
@@ -2521,13 +2521,13 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@monaco-editor/loader@1.6.1':
+  '@monaco-editor/loader@1.5.0':
     dependencies:
       state-local: 1.0.7
 
   '@monaco-editor/react@4.7.0(monaco-editor@0.54.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
-      '@monaco-editor/loader': 1.6.1
+      '@monaco-editor/loader': 1.5.0
       monaco-editor: 0.54.0
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
@@ -3559,7 +3559,7 @@ snapshots:
       - '@types/react'
       - immer
 
-  '@reduxjs/toolkit@2.9.1(react-redux@9.2.0(@types/react@19.0.0)(react@19.0.0)(redux@5.0.1))(react@19.0.0)':
+  '@reduxjs/toolkit@2.9.0(react-redux@9.2.0(@types/react@19.0.0)(react@19.0.0)(redux@5.0.1))(react@19.0.0)':
     dependencies:
       '@standard-schema/spec': 1.0.0
       '@standard-schema/utils': 0.3.0
@@ -3791,11 +3791,11 @@ snapshots:
       next: 15.2.4(@opentelemetry/api@1.9.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react: 19.0.0
 
-  '@vercel/oidc@3.0.3': {}
+  '@vercel/oidc@3.0.2': {}
 
-  ai@5.0.76(zod@3.25.76):
+  ai@5.0.68(zod@3.25.76):
     dependencies:
-      '@ai-sdk/gateway': 2.0.0(zod@3.25.76)
+      '@ai-sdk/gateway': 1.0.39(zod@3.25.76)
       '@ai-sdk/provider': 2.0.0
       '@ai-sdk/provider-utils': 3.0.12(zod@3.25.76)
       '@opentelemetry/api': 1.9.0
@@ -3808,28 +3808,28 @@ snapshots:
   autoprefixer@10.4.20(postcss@8.5.0):
     dependencies:
       browserslist: 4.26.3
-      caniuse-lite: 1.0.30001751
+      caniuse-lite: 1.0.30001749
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.1.1
       postcss: 8.5.0
       postcss-value-parser: 4.2.0
 
-  baseline-browser-mapping@2.8.19: {}
+  baseline-browser-mapping@2.8.16: {}
 
   browserslist@4.26.3:
     dependencies:
-      baseline-browser-mapping: 2.8.19
-      caniuse-lite: 1.0.30001751
-      electron-to-chromium: 1.5.237
-      node-releases: 2.0.26
+      baseline-browser-mapping: 2.8.16
+      caniuse-lite: 1.0.30001749
+      electron-to-chromium: 1.5.234
+      node-releases: 2.0.23
       update-browserslist-db: 1.1.3(browserslist@4.26.3)
 
   busboy@1.6.0:
     dependencies:
       streamsearch: 1.1.0
 
-  caniuse-lite@1.0.30001751: {}
+  caniuse-lite@1.0.30001749: {}
 
   chownr@3.0.0: {}
 
@@ -3953,7 +3953,7 @@ snapshots:
 
   dompurify@3.1.7: {}
 
-  electron-to-chromium@1.5.237: {}
+  electron-to-chromium@1.5.234: {}
 
   embla-carousel-react@8.5.1(react@19.0.0):
     dependencies:
@@ -4103,7 +4103,7 @@ snapshots:
       '@swc/counter': 0.1.3
       '@swc/helpers': 0.5.15
       busboy: 1.6.0
-      caniuse-lite: 1.0.30001751
+      caniuse-lite: 1.0.30001749
       postcss: 8.4.31
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
@@ -4123,7 +4123,7 @@ snapshots:
       - '@babel/core'
       - babel-plugin-macros
 
-  node-releases@2.0.26: {}
+  node-releases@2.0.23: {}
 
   normalize-range@0.1.2: {}
 
@@ -4220,9 +4220,9 @@ snapshots:
       - '@types/react'
       - immer
 
-  recharts@3.3.0(@types/react@19.0.0)(react-dom@19.0.0(react@19.0.0))(react-is@19.2.0)(react@19.0.0)(redux@5.0.1):
+  recharts@3.2.1(@types/react@19.0.0)(react-dom@19.0.0(react@19.0.0))(react-is@19.2.0)(react@19.0.0)(redux@5.0.1):
     dependencies:
-      '@reduxjs/toolkit': 2.9.1(react-redux@9.2.0(@types/react@19.0.0)(react@19.0.0)(redux@5.0.1))(react@19.0.0)
+      '@reduxjs/toolkit': 2.9.0(react-redux@9.2.0(@types/react@19.0.0)(react@19.0.0)(redux@5.0.1))(react@19.0.0)
       clsx: 2.1.1
       decimal.js-light: 2.5.1
       es-toolkit: 1.40.0

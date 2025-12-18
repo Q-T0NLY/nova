@@ -435,5 +435,3 @@ export function ExtensionBuilder({ onSave, onTest }: ExtensionBuilderProps) {
     </div>
   )
 }
-
-export default ExtensionBuilder

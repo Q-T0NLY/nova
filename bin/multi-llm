@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Simple CLI wrapper to call the local Nexus multi-LLM orchestrator
+HOST=${NEXUS_ML_SERVICE_HOST:-http://127.0.0.1:9001}
+if [[ -z "$1" ]]; then
+  echo "Usage: multi-llm '<prompt>' [provider1,provider2,...]"
+  exit 2
+fi
+PROMPT="$1"
+PROVIDERS="$2"
+if [[ -z "$PROVIDERS" ]]; then
+  DATA=$(jq -nc --arg p "$PROMPT" '{prompt:$p, providers:[{name:"openai"}] }')
+else
+  # build providers array from comma list
+  IFS=',' read -r -a arr <<< "$PROVIDERS"
+  provs=""
+  for v in "${arr[@]}"; do
+    provs+="{\"name\":\"${v}\"},"
+  done
+  provs="[${provs%,}]"
+  DATA=$(jq -n --arg p "$PROMPT" --argjson provs "$provs" '{prompt:$p, providers:$provs}')
+fi
+curl -s -X POST "$HOST/v1/complete" -H 'Content-Type: application/json' -d "$DATA" | jq
